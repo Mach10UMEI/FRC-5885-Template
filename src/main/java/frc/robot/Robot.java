@@ -2,12 +2,10 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.kernal;
+package frc.robot;
 
-import com.pathplanner.lib.server.PathPlannerServer;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.Constants;
 import org.littletonrobotics.junction.LogFileUtil;
 import org.littletonrobotics.junction.LoggedRobot;
 import org.littletonrobotics.junction.Logger;
@@ -21,10 +19,8 @@ public class Robot extends LoggedRobot {
 
   @Override
   public void robotInit() {
-    PathPlannerServer.startServer(5811);
     Logger logger = Logger.getInstance();
 
-    // Copied from advtangekit examples
     // Record metadata
     logger.recordMetadata("ProjectName", BuildConstants.MAVEN_NAME);
     logger.recordMetadata("BuildDate", BuildConstants.BUILD_DATE);
@@ -43,7 +39,6 @@ public class Robot extends LoggedRobot {
         break;
     }
 
-    // Copied from advtangekit examples
     // Set up data receivers & replay source
     switch (Constants.currentMode) {
         // Running on a real robot, log to a USB stick
@@ -53,8 +48,8 @@ public class Robot extends LoggedRobot {
         break;
 
         // Running a physics simulator, log to local folder
-      case SIMULATOR:
-        // logger.addDataReceiver(new WPILOGWriter(""));
+      case SIM:
+        logger.addDataReceiver(new WPILOGWriter(""));
         logger.addDataReceiver(new NT4Publisher());
         break;
 
@@ -68,6 +63,7 @@ public class Robot extends LoggedRobot {
     }
 
     logger.start();
+
     m_robotContainer = new RobotContainer();
   }
 
