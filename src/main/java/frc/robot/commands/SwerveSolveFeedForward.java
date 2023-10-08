@@ -18,7 +18,7 @@ public class SwerveSolveFeedForward extends CommandBase {
 
   private final double m_delay = 3.0;
   private final double m_rampDelay = 0.3;
-  private final double m_rampRate = 0.025;
+  private final double m_rampRate = 0.05;
   private final double m_minimumWaitTime = 0.5;
 
   private final List<Double> m_xVelocityMetersPerSecond = new LinkedList<Double>();
@@ -57,7 +57,7 @@ public class SwerveSolveFeedForward extends CommandBase {
       if ((currentVelocityMetersPerSecond - m_previousVelocityMetersPerSecond) / 0.02 <= 0.005
           && (m_timer.get() - m_lastSetTime) >= m_minimumWaitTime) {
         m_xVelocityMetersPerSecond.add(currentVelocityMetersPerSecond);
-        m_yVoltage.add(m_currentVoltage); // m_swerveSubsystem.getAverageMotorVoltage());
+        m_yVoltage.add(m_swerveSubsystem.getAverageMotorVoltage());
         m_lastSetTime = m_timer.get();
 
         m_currentVoltage += m_rampRate;

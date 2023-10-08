@@ -42,8 +42,8 @@ public class SwerveFollowSquare extends SequentialCommandGroup {
   /** Creates a new SwerveFollowSquare. */
   public SwerveFollowSquare(SwerveDrive swerveSubsystem, SwervePoseEstimator poseEstimator) {
     thetaController.enableContinuousInput(-Math.PI, Math.PI);
-    PIDController xController = new PIDController(1.5, 0, 0);
-    PIDController yController = new PIDController(1.5, 0, 0);
+    PIDController xController = new PIDController(0.5, 0, 0);
+    PIDController yController = new PIDController(0.5, 0, 0);
 
     SwerveControllerCommand swerveControllerCommand =
         new SwerveControllerCommand(

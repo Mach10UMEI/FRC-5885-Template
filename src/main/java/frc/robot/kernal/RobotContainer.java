@@ -58,19 +58,19 @@ public class RobotContainer {
                     SwerveConstants.kRightFrontTurnMotorInverted,
                     SwerveConstants.kRightFrontDriveMotorInverted),
                 new SwerveModuleNEO(
-                    SwerveConstants.kLeftRearDriveMotorID,
-                    SwerveConstants.kLeftRearTurnMotorID,
-                    SwerveConstants.kLeftRearAnalogEncoderPort,
-                    SwerveConstants.kLeftRearModuleOffset,
-                    SwerveConstants.kLeftRearTurnMotorInverted,
-                    SwerveConstants.kLeftRearDriveMotorInverted),
-                new SwerveModuleNEO(
                     SwerveConstants.kRightRearDriveMotorID,
                     SwerveConstants.kRightRearTurnMotorID,
                     SwerveConstants.kRightRearAnalogEncoderPort,
                     SwerveConstants.kRightRearModuleOffset,
                     SwerveConstants.kRightRearTurnMotorInverted,
-                    SwerveConstants.kRightRearDriveMotorInverted));
+                    SwerveConstants.kRightRearDriveMotorInverted),
+                new SwerveModuleNEO(
+                    SwerveConstants.kLeftRearDriveMotorID,
+                    SwerveConstants.kLeftRearTurnMotorID,
+                    SwerveConstants.kLeftRearAnalogEncoderPort,
+                    SwerveConstants.kLeftRearModuleOffset,
+                    SwerveConstants.kLeftRearTurnMotorInverted,
+                    SwerveConstants.kLeftRearDriveMotorInverted));
 
         break;
 
@@ -103,12 +103,14 @@ public class RobotContainer {
     swDrive.setDefaultCommand(
         new SwerveJoystickCmd(
             swDrive,
-            () -> (-MathUtil.applyDeadband(controller.getLeftY(), SwerveConstants.kDeadband)),
-            () -> (-MathUtil.applyDeadband(controller.getLeftX(), SwerveConstants.kDeadband)),
-            () -> (-MathUtil.applyDeadband(controller.getRightX(), SwerveConstants.kDeadband))));
+            () -> -(MathUtil.applyDeadband(controller.getLeftY(), SwerveConstants.kDeadband)),
+            () -> -(MathUtil.applyDeadband(controller.getLeftX(), SwerveConstants.kDeadband)),
+            () -> -(MathUtil.applyDeadband(controller.getRightX(), SwerveConstants.kDeadband))));
 
-    // new JoystickButton(controller.getHID(), Button.kX.value)
-    //     .onTrue(new SwerveFollowSquare(swDrive, swPoseEst));
+    new JoystickButton(controller.getHID(), Button.kX.value)
+        .onTrue(new SwerveFollowSquare(swDrive, swPoseEst));
+
+    // swPoseEst.reset(new Pose2d(0, 0, new Rotation2d(0)));
 
     // swDrive.setDefaultCommand(new SwerveSolveFeedForward(swDrive));
   }

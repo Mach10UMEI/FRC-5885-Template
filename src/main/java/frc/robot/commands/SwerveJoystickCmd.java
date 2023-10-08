@@ -31,9 +31,9 @@ public class SwerveJoystickCmd extends CommandBase {
     xSpdFunction = xSpdFnc;
     ySpdFunction = ySpdFnc;
     turningSpdFunction = turningSpd;
-    xLimiter = new SlewRateLimiter(12);
-    yLimiter = new SlewRateLimiter(12);
-    turningLimiter = new SlewRateLimiter(8);
+    xLimiter = new SlewRateLimiter(3);
+    yLimiter = new SlewRateLimiter(3);
+    turningLimiter = new SlewRateLimiter(6);
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(m_swerveSubsystem);
   }
@@ -50,9 +50,9 @@ public class SwerveJoystickCmd extends CommandBase {
     double turnSpd = turningSpdFunction.get();
 
     // x * y --> y === speed constant, m/s
-    xSpd = xLimiter.calculate(xSpd) * 1.5;
-    ySpd = yLimiter.calculate(ySpd) * 1.5;
-    turnSpd = turningLimiter.calculate(turnSpd) * 3.14159 * 2;
+    xSpd = xLimiter.calculate(xSpd) * 1;
+    ySpd = yLimiter.calculate(ySpd) * 1;
+    turnSpd = turningLimiter.calculate(turnSpd) * 3.14159 * 1;
 
     ChassisSpeeds chassisSpeeds;
     // Use field oriented drive
@@ -65,18 +65,18 @@ public class SwerveJoystickCmd extends CommandBase {
     }
 
     // Comment below out if problem occures
-    chassisSpeeds =
-        discretize(
-            chassisSpeeds.vxMetersPerSecond,
-            chassisSpeeds.vyMetersPerSecond,
-            chassisSpeeds.omegaRadiansPerSecond,
-            0.02);
+    // chassisSpeeds =
+    //     discretize(
+    //         chassisSpeeds.vxMetersPerSecond,
+    //         chassisSpeeds.vyMetersPerSecond,
+    //         chassisSpeeds.omegaRadiansPerSecond,
+    //         0.02);
 
     SwerveModuleState[] moduleStates =
         SwerveConstants.kDriveKinematics.toSwerveModuleStates(chassisSpeeds);
 
     Logger.getInstance().recordOutput("Expected Chassis Speeds", moduleStates);
-    // Logger.getInstance().recordOutput("Expected Chassis Speeds", m_swerveSubsystem.getHeading());
+    Logger.getInstance().recordOutput("CURRENT ROT", m_swerveSubsystem.getHeading());
 
     m_swerveSubsystem.setModuleStates(moduleStates);
   }

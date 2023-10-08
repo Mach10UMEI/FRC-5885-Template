@@ -63,7 +63,7 @@ public class SwerveDrive extends SubsystemBase {
     for (int i = 0; i != 4; i++) {
       m_turnController[i] = new PIDController(0.5, 0, 0);
       m_turnController[i].enableContinuousInput(-Math.PI, Math.PI);
-      m_motorFeedForward[i] = new SimpleMotorFeedforward(0.150531, 1.31831);
+      m_motorFeedForward[i] = new SimpleMotorFeedforward(0.0892581, 2.66314);
     }
   }
 
@@ -74,10 +74,10 @@ public class SwerveDrive extends SubsystemBase {
     }
 
     var chassisSpeeds = SwerveConstants.kDriveKinematics.toChassisSpeeds(getModuleStates());
-    m_rotationRad += chassisSpeeds.omegaRadiansPerSecond * 0.02;
+    // m_rotationRad += chassisSpeeds.omegaRadiansPerSecond * 0.02;
 
-    // m_rotation = -m_gyro.getAngle();
-    // m_rotation += Units.radiansToDegrees(chassisRotationSpeed * 0.02);
+    m_rotationRad = -Units.degreesToRadians(m_gyro.getAngle());
+    // m_rotationRad = Units.radiansToDegrees(m_rotationRad);
 
     odometer.update(getRotation2d(), getModulePositions());
 
@@ -86,6 +86,8 @@ public class SwerveDrive extends SubsystemBase {
     Logger.getInstance().recordOutput("m_rotationSPD", chassisSpeeds.omegaRadiansPerSecond);
     Logger.getInstance().recordOutput("m_rotation", Units.degreesToRadians(m_rotationRad));
     Logger.getInstance().recordOutput("m_rotation_deg", m_rotationRad);
+
+    Logger.getInstance().recordOutput("slot 0 vel", m_modulesInput[0].driveVelocityMetersPerSec);
   }
 
   public SwerveModulePosition[] getModulePositions() {
