@@ -33,7 +33,7 @@ public class SimplePathPlanner extends SequentialCommandGroup {
     addCommands(
         new InstantCommand(
             () -> {
-              poseEstimator.reset(traj.getInitialPose());
+              // poseEstimator.reset(traj.getInitialPose());
             }),
         Choreo.choreoSwerveCommand(
             traj, // Choreo trajectory from above
@@ -51,9 +51,7 @@ public class SimplePathPlanner extends SequentialCommandGroup {
             // error
             m_robotDrive::setChassisSpeeds,
             () -> {
-              return DriverStation.getAlliance()
-                  .orElse(DriverStation.Alliance.Blue)
-                  .equals(DriverStation.Alliance.Red);
+              return true;
             }, // Whether or not to mirror the path based on alliance (this assumes the path is
             // created for the blue alliance)
             m_robotDrive // The subsystem(s) to require, typically your drive subsystem only

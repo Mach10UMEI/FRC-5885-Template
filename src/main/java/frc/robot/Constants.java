@@ -87,10 +87,10 @@ public final class Constants {
 
       //////////////////////////
       // Drive Motor Directions
-      public static final boolean kLeftFrontDriveMotorInverted = true;
-      public static final boolean kRightFrontDriveMotorInverted = false;
-      public static final boolean kLeftRearDriveMotorInverted = true;
-      public static final boolean kRightRearDriveMotorInverted = false;
+      public static final boolean kLeftFrontDriveMotorInverted = false;
+      public static final boolean kRightFrontDriveMotorInverted = true;
+      public static final boolean kLeftRearDriveMotorInverted = false;
+      public static final boolean kRightRearDriveMotorInverted = true;
 
       /////////////////
       // Turn Motor IDs

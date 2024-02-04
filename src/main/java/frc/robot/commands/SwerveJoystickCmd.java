@@ -99,7 +99,7 @@ public class SwerveJoystickCmd extends Command {
         MathUtil.applyDeadband(
                 m_turnDrivePercentFunction.get(), ControllerConstants.kSwerveDriveDeadband)
             * SwerveConstants.kMaxSpeedAngularRadiansPerSecond
-            * m_angularSpeedLimitChooser.get()*-1.0;
+            * m_angularSpeedLimitChooser.get();
 
     // This does the trig for us and lets us get the x/y velocity
     Translation2d translation = new Translation2d(linearVelocity, linearDirection);
