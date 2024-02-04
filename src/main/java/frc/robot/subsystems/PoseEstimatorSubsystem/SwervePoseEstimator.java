@@ -54,7 +54,7 @@ public class SwervePoseEstimator extends SubsystemBase {
 
     m_swerveDrive = swerveDrive;
 
-    m_noodleVision1 = new NoodleVision(0);
+    m_noodleVision1 = new NoodleVision(1);
   }
 
   @Override

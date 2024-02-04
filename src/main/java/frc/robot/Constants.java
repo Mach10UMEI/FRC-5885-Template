@@ -50,7 +50,7 @@ public final class Constants {
     // and the absolute encoders on the modules. The absolute encoders
     // are more accurate, but risk loosing connection mid match and analog
     // noise.
-    public static final boolean kUseExternalEncoders = false;
+    public static final boolean kUseExternalEncoders = true;
 
     ///////////////////////////
     // Maximum Attainable Speed
@@ -62,8 +62,8 @@ public final class Constants {
     // Robot Track Width and Base Width
     //
     // This is measured wheel to wheel. The robot *should* be a square.
-    public static final double kTrackWidthMeters = Units.inchesToMeters(24.0);
-    public static final double kWheelBaseWidthMeters = Units.inchesToMeters(24.0);
+    public static final double kTrackWidthMeters = 64.25/100;
+    public static final double kWheelBaseWidthMeters = 64.25/100;
 
     //////////////////////////
     // Swerve Drive Kinematics
@@ -80,24 +80,24 @@ public final class Constants {
     public static final class ModuleConstants {
       ///////////////////
       // Drive Motor IDs
-      public static final int kLeftFrontDriveMotorID = 13;
-      public static final int kRightFrontDriveMotorID = 12;
-      public static final int kLeftRearDriveMotorID = 10;
-      public static final int kRightRearDriveMotorID = 11;
+      public static final int kLeftFrontDriveMotorID = 3;
+      public static final int kRightFrontDriveMotorID = 5;
+      public static final int kLeftRearDriveMotorID = 1;
+      public static final int kRightRearDriveMotorID = 7;
 
       //////////////////////////
       // Drive Motor Directions
-      public static final boolean kLeftFrontDriveMotorInverted = false;
-      public static final boolean kRightFrontDriveMotorInverted = true;
-      public static final boolean kLeftRearDriveMotorInverted = false;
-      public static final boolean kRightRearDriveMotorInverted = true;
+      public static final boolean kLeftFrontDriveMotorInverted = true;
+      public static final boolean kRightFrontDriveMotorInverted = false;
+      public static final boolean kLeftRearDriveMotorInverted = true;
+      public static final boolean kRightRearDriveMotorInverted = false;
 
       /////////////////
       // Turn Motor IDs
-      public static final int kLeftFrontTurnMotorID = 23;
-      public static final int kRightFrontTurnMotorID = 22;
-      public static final int kLeftRearTurnMotorID = 20;
-      public static final int kRightRearTurnMotorID = 21;
+      public static final int kLeftFrontTurnMotorID = 4;
+      public static final int kRightFrontTurnMotorID = 6;
+      public static final int kLeftRearTurnMotorID = 2;
+      public static final int kRightRearTurnMotorID = 8;
 
       ////////////////////////
       // Turn Motor Directions
@@ -108,19 +108,19 @@ public final class Constants {
 
       ////////////////////////
       // Analog Encoders Ports
-      public static final int kLeftFrontAnalogEncoderPort = 3;
-      public static final int kRightFrontAnalogEncoderPort = 2;
-      public static final int kLeftRearAnalogEncoderPort = 0;
-      public static final int kRightRearAnalogEncoderPort = 1;
+      public static final int kLeftFrontAnalogEncoderPort = 0;
+      public static final int kRightFrontAnalogEncoderPort = 1;
+      public static final int kLeftRearAnalogEncoderPort = 2;
+      public static final int kRightRearAnalogEncoderPort = 3;
 
       /////////////////
       // Module Offsets
       //
       // Use SwerveGetModuleOffsets to find these values.
-      public static final Rotation2d kLeftFrontModuleOffset = Rotation2d.fromDegrees(143.239);
-      public static final Rotation2d kRightFrontModuleOffset = Rotation2d.fromDegrees(-15.183382);
-      public static final Rotation2d kLeftRearModuleOffset = Rotation2d.fromDegrees(-141.377336);
-      public static final Rotation2d kRightRearModuleOffset = Rotation2d.fromDegrees(-70.18733);
+      public static final Rotation2d kLeftFrontModuleOffset = Rotation2d.fromDegrees(-60.5);
+      public static final Rotation2d kRightFrontModuleOffset = Rotation2d.fromDegrees(-39.4);
+      public static final Rotation2d kLeftRearModuleOffset = Rotation2d.fromDegrees(-37.5);
+      public static final Rotation2d kRightRearModuleOffset = Rotation2d.fromDegrees(-110.5);
 
       //////////////////////
       // Drive PID Constants
@@ -134,15 +134,15 @@ public final class Constants {
       // Drive Feed Forward Constants
       //
       // These values are found by using the SwerveSolveFeedForward command.
-      public static final double kDriveFeedForwardKs = 0.09214084677588957;
-      public static final double kDriveFeedForwardKv = 2.6828478208373143;
+      public static final double kDriveFeedForwardKs = 0.14307656;
+      public static final double kDriveFeedForwardKv = 2.71621856;
       public static final double kDriveFeedForwardKa = 0.0;
 
       //////////////////////
       // Drive PID Constants
       //
       // These are gussed values.
-      public static final double kTurningFeedbackP = 8.0;
+      public static final double kTurningFeedbackP = 6.0;
       public static final double kTurningFeedbackI = 0.0;
       public static final double kTurningFeedbackD = 0.0;
       public static final double kTurningFeedbackTolerance = Units.degreesToRadians(0.65);
@@ -159,7 +159,7 @@ public final class Constants {
       //////////////
       // Gear Ratios
       public static final double kDriveMotorGearRatio = 1.0 / 6.75;
-      public static final double kTurningMotorGearRatio = 1.0 / (150.0 / 7.0);
+      public static final double kTurningMotorGearRatio = 1.0 / 13.71;
 
       ////////////////////////////////
       // Encoder Calculation Constants
